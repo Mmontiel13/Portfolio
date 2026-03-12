@@ -1,0 +1,70 @@
+---
+const { title, description, image1, image2, github } = Astro.props;
+---
+
+<div class="project-card">
+  <div class="images">
+
+    <img class="img-back" src={image1} />
+
+    {image2 && <img class="img-front" src={image2} />}
+
+  </div>
+
+  <div class="project-info">
+    <h1>{title}</h1>
+
+    <p>{description}</p>
+
+    <a class="btn" href={github}> <i class="fa-brands fa-github fa-lg"></i>Github</a>
+  </div>
+</div>
+
+<style>
+  .project-card {
+    display: flex;
+  }
+
+  .images{
+  position:relative;
+  left: -180px;
+  width:420px;
+}
+
+.img-back{
+  width:100%;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+.img-front{
+  position:absolute;
+  bottom:-40px;
+  right:-40px;
+
+  width:100%;
+
+  border-radius:14px;
+
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+  .project-info {
+    max-width: 420px;
+  }
+
+  h1{
+    font-size:26px;
+    margin-bottom:20px;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  p {
+    opacity: 0.8;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  
+</style>

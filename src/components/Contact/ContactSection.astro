@@ -1,0 +1,57 @@
+<section class="contact">
+  <h2>Contactame</h2>
+
+  <div class="contact-grid">
+    <div class="left">
+      <h4>Medios de comunicación</h4>
+
+      <a href="">Enviar e-mail <i class="fa-solid fa-paper-plane"></i></a>
+      <a href=""><i class="fa-brands fa-github fa-lg"></i></a>
+      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+
+    <div class="center">
+      <slot />
+    </div>
+
+    <div class="right">
+      <h4>Otras Actividades</h4>
+
+      <p>Diseño UI, contribuciones open source</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    margin-top: 460px;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-bottom: 50px;
+  }
+
+  .contact h2{
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .left h2{
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+</style>

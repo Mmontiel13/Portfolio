@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+const projects = await getCollection("projects");
+---
+
+<section class="projects">
+  <h2>Proyectos Destacados / Aportaciones</h2>
+
+  <div class="content-object">
+    <div class="carousel-viewport-projects">
+      <div class="track carousel-track-horizontal" id="project-track">
+        {
+          projects.map((project) => (
+            <div class="carousel-slide">
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                image1={project.data.image1}
+                image2={project.data.image2}
+                github={project.data.github}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="dots" id="project-dots">
+    {
+      projects.map((_, i) => (
+        <span class={`dot ${i === 0 ? "active" : ""}`} data-index={i} />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById("project-track");
+  const dots = document.querySelectorAll("#project-dots .dot");
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = parseInt(dot.getAttribute("data-index") || "0");
+      if (track) track.style.transform = `translateX(-${index * 100}%)`;
+
+      dots.forEach((d) => d.classList.remove("active"));
+      dot.classList.add("active");
+    });
+  });
+</script>
+
+<style>
+  /* Tus estilos originales se mantienen intactos */
+  .projects {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .projects h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .projects-container {
+    border-radius: 40px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+  }
+</style>

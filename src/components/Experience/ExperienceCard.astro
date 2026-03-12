@@ -1,0 +1,86 @@
+---
+const {company, role, description, logo} = Astro.props
+---
+
+<div class="card">
+  <div class="logo-wrapper">
+    <img src={logo} alt={company} class="logo-img" />
+  </div>
+
+  <div class="content">
+    <h3 class="company-name">{company}</h3>
+    <p class="role-title">{role}</p>
+    
+    <div class="divider"></div>
+
+    <p class="description">{description}</p>
+
+    <a href="#" class="details btn">More details</a>
+  </div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    width: 100%; /* Ahora se adapta al ancho del padre (carousel) */
+    max-width: 300px;
+    padding: 70px 25px 50px; 
+    text-align: left;
+    margin-top: 20px; /* Espacio para el logo que sobresale */
+    transition: transform 0.4s ;
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    top: -90px;
+
+    left: 54%;
+    transform: translateX(-50%);
+
+    width: 200px;
+    height: 200px;
+  }
+
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .company-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0;
+    color: #fff;
+    letter-spacing: -0.5px;
+    padding-top: 40px;
+  }
+
+  .role-title {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 5px 0 15px 0;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+  }
+
+  .details {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+  }
+</style>

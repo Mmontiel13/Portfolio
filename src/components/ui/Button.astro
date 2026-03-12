@@ -1,0 +1,38 @@
+---
+const {href,label,icon} = Astro.props
+---
+
+<a class="btn" href={href}>
+  {icon && <img src={icon} />}
+  {label}
+</a>
+
+<style>
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:10px 18px;
+
+  border-radius:12px;
+
+  border:1px solid rgba(255,255,255,0.15);
+
+  background:rgba(255,255,255,0.05);
+
+  backdrop-filter:blur(6px);
+
+  color:white;
+  text-decoration:none;
+
+  font-size:14px;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  background:rgba(255,255,255,0.12);
+  transform:translateY(-2px);
+}
+</style>

@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content"
+import ExperienceCard from "./ExperienceCard.astro"
+const experience = await getCollection("experience")
+---
+
+<div class="carousel">
+  <div class="carousel-viewport-experience ">
+    <p class="carousel-title">Experiencia Laboral</p>
+    <div class="content-object">
+      <div class="track carousel-track-horizontal" id="exp-track">
+        {experience.map(exp => (
+          <div class="carousel-slide">
+            <ExperienceCard
+              company={exp.data.company}
+              role={exp.data.role}
+              description={exp.data.description}
+              logo={exp.data.logo}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="dots" id="exp-dots">
+        {experience.map((_, i) => (
+          <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
+        ))}
+      </div>
+</div>
+
+<script>
+  const track = document.getElementById('exp-track');
+  const dots = document.querySelectorAll('#exp-dots .dot');
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.getAttribute('data-index') || "0");
+      if (track) track.style.transform = `translateX(-${index * 100}%)`;
+      
+      dots.forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    });
+  });
+</script>
+
+<style>
+.carousel {
+  width: 300px; /* Cambiado de 280px a 350px */
+  position: relative;
+}
+
+.track {
+  display: flex;
+}
+
+.carousel-title {
+  color: #fff;
+  font-weight: bold;
+  opacity: 0.9;
+  margin-bottom: 60px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+</style>
