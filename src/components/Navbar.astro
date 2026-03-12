@@ -1,88 +1,77 @@
+---
+---
+
 <nav class="navbar content-object">
   <a href="#inicio" class="nav-link">Principal</a>
   <span class="separator"><i class="fa-solid fa-diamond"></i></span>
-  
+
   <a href="#proyectos" class="nav-link">Proyectos</a>
   <span class="separator"><i class="fa-solid fa-diamond"></i></span>
-  
+
   <a href="#contacto" class="nav-link">Contacto</a>
-  <span class="separator"><i class="fa-solid fa-diamond"></i></span>
-  
-  <a href="#" class="lang-btn"><i class="fa-solid fa-language fa-xl"></i></a>
 </nav>
 
 <style>
-/* Asegura que el scroll no sea brusco al dar click */
-html {
-  scroll-behavior: smooth;
-}
 
-.navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 25px;
-  display: flex;
-  align-items: center; /* Alinea iconos y texto */
-  gap: 25px;
-  border-radius: 999px;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.2); /* Opcional: fondo para legibilidad */
-  backdrop-filter: blur(10px);
-}
+  .navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-radius: 999px;
+    z-index: 9999;
+    background: rgba(15, 15, 15, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(217, 217, 217, 0.1);
+  }
 
-/* Estilo base para enlaces y separadores */
-.navbar a, 
-.navbar .separator {
-  color: rgba(217, 217, 217, 0.6);
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
+  .navbar a,
+  .navbar .separator {
+    color: rgba(217, 217, 217, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
 
-/* El separador no es clickeable pero mantiene el color */
-.navbar .separator {
-  cursor: default;
-  font-size: 12px; /* Ajusta el tamaño del diamante si es necesario */
-}
+  .navbar .separator {
+    cursor: default;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+  }
 
-/* Hover y Clase Activa */
-.navbar a:hover,
-.navbar a.active {
-  color: rgba(217, 217, 217, 1);
-}
+  /* Hover y Estado Activo */
+  .navbar a:hover,
+  .navbar a.active {
+    color: rgba(217, 217, 217, 1);
+    text-shadow: 0 0 8px rgba(217, 217, 217, 0.4);
+  }
 </style>
 
 <script>
-  // Esta lógica se ejecuta en el cliente
+  // Lógica de IntersectionObserver para detectar la sección activa
   const observerOptions = {
     root: null,
-    rootMargin: '-30% 0px -60% 0px', // Detecta la sección cuando está en el centro
+    rootMargin: '-30% 0px -60% 0px', // Ajustado para activar el link cuando la sección está al centro
     threshold: 0
   };
 
-  const handleIntersect = (entries) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('active');
-          }
+        document.querySelectorAll('.nav-link').forEach(link => {
+          // Compara el href del link con el ID de la sección actual
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
       }
     });
-  };
+  }, observerOptions);
 
-  const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-  // Seleccionamos todas las secciones de tu página
-  // Asegúrate de que tus secciones tengan id="inicio", id="proyectos", etc.
-  document.querySelectorAll('section[id]').forEach(section => {
-    observer.observe(section);
-  });
+  // Observa todas las secciones que tengan un ID
+  document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 </script>
