@@ -24,10 +24,12 @@
 <style>
   .contact {
     margin-top: 600px;
-    max-width: 1200px;
+    max-width: auto;
     margin-bottom: 400px;
     margin-inline: auto;
     padding-bottom: 50px;
+    margin-left: 10px;
+    margin-right: -40px;
   }
 
   .contact h2{
@@ -40,8 +42,12 @@
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    gap: 40px;
+    gap: 60px;
     align-items: center;
+  }
+
+  .left{
+    padding-left: 60px;
   }
 
   .left h2{
@@ -53,5 +59,9 @@
   .center {
     display: flex;
     justify-content: center;
+  }
+
+  .right{
+    padding-left: 40px;
   }
 </style>
