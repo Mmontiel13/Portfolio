@@ -1,0 +1,61 @@
+---
+/* Decoración derecha para Proyectos */
+---
+<div class="project-bg-right">
+    <div class="glow-purple"></div>
+    <div class="motion-container pointer-events-auto">
+        <svg 
+                id="small-code-svg" 
+                class="small-code" 
+                viewBox="0 0 535 300" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg">
+
+                <path d="M4 40C4 17.9086 21.9086 0 44 0H491C513.091 0 531 17.9086 531 40V82H4V40Z"/>
+                <path d="M4 40C4 17.9086 21.9086 0 44 0H491C513.091 0 531 17.9086 531 40V82H4V40Z" fill="#313131"/>
+
+                <path d="M4 82H531V256C531 278.091 513.091 296 491 296H44C21.9086 296 4 278.091 4 256V82Z" fill="#28262D"/>
+
+                <circle cx="44.5" cy="43.5" r="9.5" fill="#FFCC00"></circle>
+                <circle cx="76.5" cy="43.5" r="9.5" fill="#FB3523"></circle>
+                <circle cx="108.5" cy="43.5" r="9.5" fill="#47FB23"></circle>
+
+                <rect x="28" y="103" width="96" height="96" rx="25" fill="#D9D9D9"/>
+                <path d="M114.438 151L96.5 168.938L92.8869 165.324L107.186 151L92.8869 136.676L96.5 133.062L114.438 151ZM37.5625 151L55.5 133.062L59.1131 136.676L44.8144 151L59.1131 165.324L55.5 168.938L37.5625 151ZM66.8263 175.303L80.2025 125.375L85.1533 126.7L71.777 176.625L66.8263 175.303Z" fill="black"/>
+        
+                <rect class="code-line" x="157" y="110" width="217" height="27" rx="13.5" fill="#A764B8"/>
+                <rect class="code-line" x="35" y="232" width="259" height="27" rx="13.5" fill="#7964B8"/>
+                <rect class="code-line" x="318" y="232" width="195" height="27" rx="13.5" fill="#6492B8"/>
+                <rect class="code-line" x="401" y="110" width="112" height="27" rx="13.5" fill="#649CB8"/>
+                <rect class="code-line" x="181" y="168" width="112" height="27" rx="13.5" fill="#649CB8"/>
+                <rect class="code-line" x="325" y="168" width="143" height="27" rx="13.5" fill="#B86472"/>
+        </svg>
+    </div>
+</div>
+
+<style>
+    .project-bg-right {
+        position: absolute;
+        width: 580px;
+        right: -100px;
+        bottom: 5%;
+        opacity: 0.7;
+        transform: rotate(12deg);
+    }
+    .glow-purple {
+        position: absolute;
+        inset: 0;
+        background: rgba(147, 51, 234, 0.15);
+        filter: blur(100px);
+        border-radius: 9999px;
+    }
+    .small-code { width: 100%; height: auto; }
+</style>
+
+<script>
+    import { createDraggable, spring } from 'animejs';
+    createDraggable('.small-code', {
+        container: [0,0,0,0],
+        releaseEase: spring({ bounce: .5 })
+    });
+</script>

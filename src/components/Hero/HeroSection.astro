@@ -2,10 +2,11 @@
 import HeroCard from "./HeroCard.astro"
 import ExperienceCarousel from "../Experience/ExperienceCarousel.astro"
 import IntroCard from "./IntroCard.astro"
+import HeroBg from "./HeroBg.astro"
 ---
 
 <section class="hero" id="inicio">
-
+  <HeroBg />
   <div class="hero-container">
 
     <div class="hero-main">
@@ -26,10 +27,12 @@ import IntroCard from "./IntroCard.astro"
 
 <style>
 
-.hero{
-  max-width:auto;
+.hero {
+  position: relative;
+  max-width: auto;
   margin: auto;
-  min-height:500px;
+  min-height: 500px;
+  
 }
 
 .hero-container{
@@ -60,7 +63,7 @@ import IntroCard from "./IntroCard.astro"
 
 .hero-intro{
   grid-area: intro;
-  margin-left: 0px;
+  margin-left: 120px;
 }
 
 </style>
