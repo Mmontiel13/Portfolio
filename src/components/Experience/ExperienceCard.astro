@@ -1,5 +1,5 @@
 ---
-const {company, role, description, logo} = Astro.props
+const {company, role, description, date, logo} = Astro.props
 ---
 
 <div class="card">
@@ -10,11 +10,10 @@ const {company, role, description, logo} = Astro.props
   <div class="content">
     <h3 class="company-name">{company}</h3>
     <p class="role-title">{role}</p>
-    
     <div class="divider"></div>
 
     <p class="description">{description}</p>
-
+    <p class="role-title">{date}</p>
     <a href="#" class="details btn">More details</a>
   </div>
 </div>

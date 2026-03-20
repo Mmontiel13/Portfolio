@@ -1,6 +1,7 @@
 ---
 company: "BUAP"
 role: "Servicio Social"
-description: "Aplicación web y blog institucional para gestión de contenido."
+description: "Desarrollo e implementación de base de datos de inventario. Actividades de mantenimiento preventivo y correctivo"
+date: "Desde Enero-2025 a Agosto-2025"
 logo: "buap.png"
 ---
