@@ -38,7 +38,7 @@
         position: absolute;
         width: 580px;
         right: -100px;
-        bottom: 5%;
+        bottom: -10%;
         opacity: 0.7;
         transform: rotate(12deg);
     }
@@ -50,6 +50,8 @@
         border-radius: 9999px;
     }
     .small-code { width: 100%; height: auto; }
+
+    
 </style>
 
 <script>
@@ -58,4 +60,29 @@
         container: [0,0,0,0],
         releaseEase: spring({ bounce: .5 })
     });
+
+    function startAnimation() {
+        const lines = document.querySelectorAll(".code-line");
+
+        function run() {
+            const count = Math.floor(Math.random() * 2) + 1;
+
+            const shuffled = Array.from(lines).sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, count);
+
+            selected.forEach(line => {
+            line.classList.add("flash");
+
+            setTimeout(() => {
+                line.classList.remove("flash");
+            }, 400);
+            });
+
+            setTimeout(run, Math.random() * 2500 + 2000);
+        }
+
+        run();
+        }
+
+        document.addEventListener("DOMContentLoaded", startAnimation);
 </script>

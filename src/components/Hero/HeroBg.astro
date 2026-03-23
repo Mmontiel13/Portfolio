@@ -82,6 +82,8 @@
         height: auto;
     }
 
+    
+
 </style>
 
 <script>
@@ -90,4 +92,29 @@
         container: [0,0,0,0],
         releaseEase: spring({ bounce: .5 })
     });
+
+    function startAnimation() {
+        const lines = document.querySelectorAll(".code-line");
+
+        function run() {
+            const count = Math.floor(Math.random() * 2) + 2;
+
+            const shuffled = Array.from(lines).sort(() => Math.random() - 0.8);
+            const selected = shuffled.slice(0, count);
+
+            selected.forEach(line => {
+            line.classList.add("flash");
+
+            setTimeout(() => {
+                line.classList.remove("flash");
+            }, 500);
+            });
+
+            setTimeout(run, Math.random() * 1500 + 500);
+        }
+
+        run();
+        }
+
+        document.addEventListener("DOMContentLoaded", startAnimation);
 </script>
