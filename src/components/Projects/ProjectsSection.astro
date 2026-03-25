@@ -45,13 +45,71 @@ const projects = await getCollection("projects");
   const track = document.getElementById("project-track");
   const dots = document.querySelectorAll("#project-dots .dot");
 
+  // Function to update active dot based on scroll position
+  function updateActiveDot() {
+    if (!track) return;
+    
+    const slides = track.querySelectorAll('.carousel-slide');
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+    
+    let closestIndex = 0;
+    let minDistance = Infinity;
+    
+    slides.forEach((slide, index) => {
+      const slideRect = slide.getBoundingClientRect();
+      const slideCenter = slideRect.left + slideRect.width / 2;
+      const distance = Math.abs(trackCenter - slideCenter);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
+    
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === closestIndex);
+    });
+  }
+
+  // Intersection Observer for more precise detection
+  const observerOptions = {
+    root: track,
+    threshold: 0.5,
+    rootMargin: '0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = Array.from(track.querySelectorAll('.carousel-slide')).indexOf(entry.target);
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === index);
+        });
+      }
+    });
+  }, observerOptions);
+
+  // Observe all slides
+  track?.querySelectorAll('.carousel-slide').forEach(slide => {
+    observer.observe(slide);
+  });
+
+  // Fallback scroll event listener
+  track?.addEventListener('scroll', updateActiveDot, { passive: true });
+
+  // Dot click handlers
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
       const index = parseInt(dot.getAttribute("data-index") || "0");
-      if (track) track.style.transform = `translateX(-${index * 100}%)`;
-
-      dots.forEach((d) => d.classList.remove("active"));
-      dot.classList.add("active");
+      const slide = track?.querySelectorAll('.carousel-slide')[index];
+      if (slide) {
+        slide.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'nearest', 
+          inline: 'center' 
+        });
+      }
     });
   });
 </script>

@@ -40,8 +40,8 @@
 <style>
     .project-bg-left {
         position: absolute;
-        width: clamp(120px, 30vw, 350px);
-        left: 50%;
+        width: clamp(300px, 30vw, 350px);
+        left: 30%;
         top: clamp(5%, 8vh, 15%);
         opacity: clamp(0.3, 0.5, 0.7);
         transform: translateX(calc(-50% - clamp(60px, 15vw, 200px))) rotate(-15deg) scaleX(clamp(0.6, 0.85, 1)) scaleY(clamp(0.6, 0.85, 1));
@@ -52,6 +52,7 @@
     @media (min-width: 768px) {
         .project-bg-left {
             width: clamp(200px, 35vw, 350px);
+            left: -10%;
             opacity: clamp(0.5, 0.6, 0.7);
             transform: rotate(-15deg) scaleX(1) scaleY(1);
         }
