@@ -59,23 +59,29 @@ const projects = await getCollection("projects");
 <style>
   .projects {
     position: relative;
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 80px;
-    padding-top: 150px;
+    width: 100%;
+    max-width: 1440px;
+    margin: clamp(80px, 15vw, 150px) auto 0;
+    padding: 0 clamp(1rem, 5vw, 3rem);
+    box-sizing: border-box;
   }
+
   .projects h2 {
     text-align: center;
-    margin-bottom: 60px;
-    font-size: 2.2rem;
+    margin-bottom: clamp(32px, 8vw, 60px);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
     font-weight: 700;
     letter-spacing: -1px;
     background: linear-gradient(to bottom, #fff, #999);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    z-index: 2;
+    position: relative;
   }
-  
+
+  .content-object {
+    position: relative;
+    z-index: 1;
+  }
 </style>

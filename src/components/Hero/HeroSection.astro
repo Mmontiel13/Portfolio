@@ -29,41 +29,84 @@ import HeroBg from "./HeroBg.astro"
 
 .hero {
   position: relative;
-  max-width: auto;
-  margin: auto;
-  min-height: 500px;
-  
+  max-width: 1440px;
+  margin: clamp(10px, 3vw, 20px) auto 200px;
+  width: 100%;
+  min-height: clamp(300px, 60vh, 600px);
 }
 
 .hero-container{
-  display:grid;
-  grid-template-columns: 1.2fr 1fr;
-  grid-template-rows: auto auto;
-  gap:40px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 6vw, 40px);
+  padding: clamp(30px, 8vw, 80px) clamp(1rem, 5vw, 3rem);
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
 
-  grid-template-areas:
-    "hero experience"
-    "intro experience";
 
-  padding-top: 100px;
-  padding-bottom: 120px;
+@media (min-width: 640px) {
+  .hero-container {
+    gap: clamp(30px, 5vw, 40px);
+    min-height: auto;
+    padding: clamp(40px, 8vw, 100px) clamp(24px, 5vw, 40px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: clamp(32px, 4vw, 40px);
+    grid-template-areas:
+      "hero experience"
+      "intro experience";
+    padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px);
+  }
 }
 
 .hero-main{
   grid-area: hero;
-  margin-left: 80px;
+  width: 100%;
+  margin-left: 0;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .hero-main {
+    margin-left: clamp(20px, 5vw, 80px);
+  }
 }
 
 .hero-experience{
   grid-area: experience;
-  display:flex;
-  justify-content:flex-end;
-  margin-right: 60px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-right: 0;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .hero-experience {
+    justify-content: flex-end;
+    margin-right: clamp(20px, 4vw, 60px);
+  }
 }
 
 .hero-intro{
   grid-area: intro;
-  margin-left: 120px;
+  width: 100%;
+  margin-left: 0;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .hero-intro {
+    margin-left: clamp(40px, 6vw, 120px);
+  }
 }
 
 </style>

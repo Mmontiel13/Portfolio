@@ -47,8 +47,10 @@ const experience = await getCollection("experience")
 
 <style>
 .carousel {
-  width: 350px;
+  width: 100%;
+  max-width: clamp(280px, 90vw, 350px);
   position: relative;
+  margin: 0 auto;
 }
 
 .track {
@@ -59,8 +61,21 @@ const experience = await getCollection("experience")
   color: #fff;
   font-weight: bold;
   opacity: 0.9;
-  margin-bottom: 60px;
-  padding-bottom: 20px;
+  margin-bottom: clamp(40px, 8vw, 60px);
+  padding-bottom: clamp(12px, 3vw, 20px);
   text-align: center;
+  font-size: clamp(14px, 4vw, 18px);
+}
+
+@media (min-width: 640px) {
+  .carousel {
+    max-width: clamp(300px, 85vw, 350px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel {
+    max-width: 350px;
+  }
 }
 </style>

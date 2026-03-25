@@ -39,70 +39,89 @@ const { title, description, image1, image2, github, tech } = Astro.props;
 <style>
   .project-card {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 100px;
-    width: 90%;
-    height: 100%;
-    
+    gap: clamp(16px, 5vw, 40px);
+    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
+    padding: clamp(20px, 3vw, 20px);
+    overflow: hidden;
   }
 
-  .images{
-  position:relative;
-  width:420px;
-  flex-shrink: 0;
-  margin-top: 20px;
-}
+  @media (min-width: 768px) {
+    .project-card {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: clamp(30px, 8vw, 100px);
+      max-width: 100%;
+    }
+  }
 
-.img-back{
-  width:100%;
-  border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,.8);
-}
+  .images {
+    position: relative;
+    width: 100%;
+    max-width: clamp(250px, 80vw, 420px);
+    flex-shrink: 0;
+    margin-top: clamp(5px, 3vw, 10px);
+  }
 
-.img-front{
-  position:absolute;
-  bottom:-40px;
-  right:-40px;
+  .img-back {
+    width: clamp(150px, 50vw, 100%);
+    border-radius: clamp(12px, 3vw, 18px);
+    box-shadow: 0 clamp(6px, 2vw, 10px) clamp(20px, 5vw, 30px) rgba(0,0,0,.8);
+  }
 
-  width:100%;
-
-  border-radius:18px;
-
-  box-shadow:0 10px 30px rgba(0,0,0,.8);
-}
+  .img-front {
+    position: absolute;
+    bottom: clamp(-20px, -5vw, -40px);
+    right: clamp(-10px, -5vw, -40px);
+    width: clamp(150px, 50vw, 100%);
+    border-radius: clamp(12px, 3vw, 18px);
+    box-shadow: 0 clamp(6px, 2vw, 10px) clamp(20px, 5vw, 30px) rgba(0,0,0,.8);
+  }
 
   .project-info {
     flex: 1;
-    max-width: 450px;
+    max-width: 100%;
     text-align: left;
-    padding-bottom: 2;
+    padding-bottom: 0;
+    padding-top: 20px;
   }
 
-  h1{
-    font-size:26px;
-    margin-bottom:20px;
+  @media (min-width: 768px) {
+    .project-info {
+      max-width: clamp(300px, 60vw, 450px);
+    }
+  }
+
+  h1 {
+    font-size: clamp(18px, 5vw, 26px);
+    margin-bottom: clamp(12px, 3vw, 20px);
     font-weight: 700;
     text-align: left;
+    line-height: 1.2;
   }
 
   p {
     opacity: 0.8;
-    margin-top: 20px;
-    margin-bottom: 25px;
+    margin-top: clamp(12px, 3vw, 20px);
+    margin-bottom: clamp(16px, 3vw, 25px);
+    font-size: clamp(13px, 3vw, 15px);
+    line-height: 1.6;
   }
 
   .tech-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: clamp(8px, 2vw, 12px);
+    margin-bottom: clamp(20px, 4vw, 30px);
   }
 
   .tech-tag {
-    font-size: 12px;
-    padding: 4px 12px;
+    font-size: clamp(11px, 2vw, 12px);
+    padding: clamp(3px, 1vw, 4px) clamp(8px, 2vw, 12px);
     border-radius: 999px;
     background: rgba(217, 217, 217, 0.1);
     color: rgba(217, 217, 217, 0.8);
@@ -111,7 +130,7 @@ const { title, description, image1, image2, github, tech } = Astro.props;
   }
 
   .private-badge {
-    font-size: 13px;
+    font-size: clamp(11px, 2vw, 13px);
     color: rgba(217, 217, 217, 0.4);
     font-style: italic;
     display: flex;
@@ -121,11 +140,11 @@ const { title, description, image1, image2, github, tech } = Astro.props;
   }
 
   .actions {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: clamp(8px, 2vw, 10px);
+    margin-bottom: clamp(12px, 3vw, 20px);
   }
 
   .private-badge i {
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px);
   }
 </style>

@@ -19,22 +19,24 @@
 <style>
 
 .hero-card{
-  width:600px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+  width: 100%;
+  max-width: clamp(280px, 90vw, 600px);
+  padding: clamp(16px, 4vw, 20px);
+  margin: 0 auto;
 }
 
 .hero-card h1{
-  font-size:36px;
-  margin-bottom:10px;
+  font-size: clamp(24px, 6vw, 36px);
+  margin-bottom: clamp(8px, 2vw, 10px);
   font-weight: 900;
   text-align: center;
+  line-height: 1.2;
 }
 
 .hero-card p{
-  font-size:16px;
+  font-size: clamp(14px, 3.5vw, 16px);
   opacity:.8;
+  line-height: 1.5;
 }
 
 </style>

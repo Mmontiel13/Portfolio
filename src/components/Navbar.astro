@@ -15,31 +15,35 @@
 
   .navbar {
     position: fixed;
-    top: 20px;
+    top: clamp(12px, 3vw, 20px);
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 25px;
+    padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 25px);
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: clamp(12px, 3vw, 25px);
     border-radius: 999px;
     z-index: 9999;
     background: rgba(15, 15, 15, 0.4);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(217, 217, 217, 0.1);
+    max-width: 90vw;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .navbar a,
   .navbar .separator {
     color: rgba(217, 217, 217, 0.6);
     text-decoration: none;
-    font-size: 14px;
+    font-size: clamp(12px, 2.5vw, 14px);
     transition: all 0.3s ease;
+    white-space: nowrap;
   }
 
   .navbar .separator {
     cursor: default;
-    font-size: 8px;
+    font-size: clamp(6px, 1.5vw, 8px);
     display: flex;
     align-items: center;
   }
@@ -50,13 +54,23 @@
     color: rgba(217, 217, 217, 1);
     text-shadow: 0 0 8px rgba(217, 217, 217, 0.4);
   }
+
+  @media (max-width: 480px) {
+    .navbar .separator {
+      display: none;
+    }
+
+    .navbar {
+      gap: clamp(8px, 2vw, 12px);
+    }
+  }
 </style>
 
 <script>
-  // Lógica de IntersectionObserver para detectar la sección activa
+
   const observerOptions = {
     root: null,
-    rootMargin: '-30% 0px -60% 0px', // Ajustado para activar el link cuando la sección está al centro
+    rootMargin: '-30% 0px -60% 0px',
     threshold: 0
   };
 
@@ -65,13 +79,11 @@
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
         document.querySelectorAll('.nav-link').forEach(link => {
-          // Compara el href del link con el ID de la sección actual
           link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
       }
     });
   }, observerOptions);
 
-  // Observa todas las secciones que tengan un ID
   document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
 </script>

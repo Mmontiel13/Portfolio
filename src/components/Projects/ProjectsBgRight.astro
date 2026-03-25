@@ -36,22 +36,45 @@
 <style>
     .project-bg-right {
         position: absolute;
-        width: 580px;
-        right: -100px;
-        bottom: -10%;
-        opacity: 0.7;
-        transform: rotate(12deg);
+        width: clamp(120px, 30vw, 580px);
+        right: 50%;
+        bottom: clamp(-15%, -12vh, -5%);
+        opacity: clamp(0.3, 0.5, 0.7);
+        transform: translateX(calc(50% + clamp(60px, 15vw, 300px))) rotate(12deg) scaleX(clamp(0.6, 0.85, 1)) scaleY(clamp(0.6, 0.85, 1));
+        pointer-events: none;
+        overflow: visible;
     }
+
+
+    @media (min-width: 768px) {
+        .project-bg-right {
+            width: clamp(200px, 35vw, 580px);
+            right: clamp(-150px, -25vw, -100px);
+            bottom: clamp(-18%, -12vh, -10%);
+            opacity: clamp(0.5, 0.6, 0.7);
+            transform: rotate(12deg) scaleX(1) scaleY(1);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .project-bg-right {
+            opacity: 0.7;
+        }
+    }
+
     .glow-purple {
         position: absolute;
         inset: 0;
         background: rgba(147, 51, 234, 0.15);
-        filter: blur(100px);
+        filter: blur(clamp(50px, 12vw, 100px));
         border-radius: 9999px;
+        opacity: clamp(0.5, 0.6, 0.8);
     }
-    .small-code { width: 100%; height: auto; }
 
-    
+    .small-code {
+        width: 100%;
+        height: auto;
+    }
 </style>
 
 <script>

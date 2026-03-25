@@ -40,21 +40,42 @@
 <style>
     .project-bg-left {
         position: absolute;
-        width: 350px;
-        left: -150px;
-        top: 10%;
-        opacity: 0.7;
-        transform: rotate(-15deg);
-
+        width: clamp(120px, 30vw, 350px);
+        left: 50%;
+        top: clamp(5%, 8vh, 15%);
+        opacity: clamp(0.3, 0.5, 0.7);
+        transform: translateX(calc(-50% - clamp(60px, 15vw, 200px))) rotate(-15deg) scaleX(clamp(0.6, 0.85, 1)) scaleY(clamp(0.6, 0.85, 1));
+        pointer-events: none;
+        overflow: visible;
     }
+
+    @media (min-width: 768px) {
+        .project-bg-left {
+            width: clamp(200px, 35vw, 350px);
+            opacity: clamp(0.5, 0.6, 0.7);
+            transform: rotate(-15deg) scaleX(1) scaleY(1);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .project-bg-left {
+            opacity: 0.7;
+        }
+    }
+
     .glow-purple {
         position: absolute;
         inset: 0;
         background: rgba(147, 51, 234, 0.15);
-        filter: blur(100px);
+        filter: blur(clamp(50px, 12vw, 100px));
         border-radius: 9999px;
+        opacity: clamp(0.5, 0.6, 0.8);
     }
-    .browser { width: 100%; height: auto; }
+
+    .browser {
+        width: 100%;
+        height: auto;
+    }
 </style>
 
 <script>
