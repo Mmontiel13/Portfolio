@@ -1,3 +1,7 @@
+---
+import WorkAvailability from "../WorkAvailability.astro";
+---
+
 <div class="intro-card content-object">
 
   <div class="intro-header">
@@ -5,16 +9,16 @@
     <img src="/avatar.jpg" alt="avatar">
 
     <div>
-      <h4>Estudiante de Ingenieria en Tecnologias de la Informacion</h4>
-      <span>BUAP</span>
+      <h4>Ingenieria en Tecnologias de la Informacion</h4>
+      
     </div>
 
   </div>
-
+  <WorkAvailability isAvailable={true} />
   <p>
-  Desarrollador Full Stack con mentalidad frontend. Construyo experiencias atractivas e intuitivas con React, Next.js y Tailwind. En constante aprendizaje y mejora.
-  
+    Estudiante de la <span>BUAP</span><b> Puebla, México.</b> 
   </p>
+
   
 
 </div>  
@@ -25,8 +29,8 @@
   width: 100%;
   max-width: clamp(280px, 90vw, 350px);
   padding: clamp(16px, 4vw, 22px);
-  margin-top: clamp(40px, 10vw, 100px);
-  margin-left: auto;
+  margin-top: clamp(10px, 10vw, 10px);
+  margin-left: 30px;
   margin-right: auto;
 }
 

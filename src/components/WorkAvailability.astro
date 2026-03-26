@@ -1,0 +1,62 @@
+---
+const { isAvailable } = Astro.props;
+---
+
+<div class="work-availability" data-available={isAvailable ? "true" : "false"}>
+  <span class="status-text">{isAvailable ? "Disponible para trabajar" : "No disponible para trabajar"}</span>
+</div>
+
+<style>
+.work-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.55rem 0.25rem;
+  font-size: clamp(10px, 2vw, 11px);
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+.work-availability::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.25);
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+.work-availability[data-available="true"]::before {
+  background: #00FF88;
+  box-shadow: 0 0 15px #00ff88, 0 0 15px #00ff88;
+}
+
+.work-availability[data-available="false"]::before {
+  background: #FFCA28;
+  box-shadow: 0 0 15px #FFCA28, 0 0 15px #FFCA28;
+}
+
+.work-availability[data-available="true"] {
+  border-color: #22aa47;
+}
+
+.work-availability[data-available="false"] {
+  border-color: #d28b00;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.9); }
+}
+
+.status-text {
+  position: relative;
+  z-index: 1;
+}
+</style>
