@@ -1,6 +1,11 @@
 ---
 
 ---
+<div 
+    class="absolute top-0 right-0 -z-10 h-150 w-150 rounded-full 
+        bg-[radial-gradient(circle_farthest-side,rgba(59,130,246,0.15),transparent)]
+        blur-3xl md:h-200 md:w-200 translate-x-1/4 -translate-y-1/4">
+</div>
 <div class="hero-bg-wrapper">
     <div class="svg-container code-pos">
         <div class="glow-purple"></div>
@@ -76,15 +81,22 @@
 
     @media (min-width: 640px) {
         .code-pos {
-            left: clamp(10px, 20vw, 27%);
+            left: clamp(10px, 20vw, 10%);
             transform: translateX(0) rotate(-10deg) scaleX(1) scaleY(1);
             opacity: 0.6;
         }
     }
 
+    @media (min-width: 780px) {
+        .code-pos {
+            left: clamp(20px, 10%, 400px);
+            opacity: 0.7;
+        }
+    }
+
     @media (min-width: 1024px) {
         .code-pos {
-            left: clamp(20px, 20%, 400px);
+            left: clamp(20px, 22%, 400px);
             opacity: 0.7;
         }
     }

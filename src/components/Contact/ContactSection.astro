@@ -37,7 +37,7 @@ import BgContact from "./BgContact.astro"
 <style>
   .contact {
     position: relative;
-    padding-bottom: clamp(50px, 12vw, 50px);
+    padding-bottom: clamp(20px, 12vw, 20px);
     margin-top: clamp(100px, 20vw, 250px);
     color: white;
     overflow-x: hidden;
@@ -82,7 +82,7 @@ import BgContact from "./BgContact.astro"
     gap: clamp(16px, 4vw, 32px);
     align-items: start;
     justify-items: stretch;
-    overflow: hidden;
+    
     min-width: 0;
     box-sizing: border-box;
   }
@@ -130,12 +130,12 @@ import BgContact from "./BgContact.astro"
 
   /* Estilos para laterales */
   .left, .right {
-    text-align: left;
+    text-align: center;
   }
 
   @media (min-width: 768px) {
     .left, .right {
-      text-align: center;
+      text-align: left;
     }
   }
 

@@ -8,8 +8,15 @@ const projects = await getCollection("projects");
 ---
 
 <section class="projects" id="proyectos">
+  <div 
+      class="absolute top-0 left-0 -z-10 h-125 w-125 rounded-full 
+        bg-[radial-gradient(circle_farthest-side,rgba(59,130,246,0.15),transparent)] 
+        blur-3xl md:h-200 md:w-200 -translate-x-1/4 -translate-y-1/4"
+></div>
+ 
   <ProjectsBgLeft />
   <ProjectsBgRight />
+  
   <h2>Proyectos Destacados / Aportaciones</h2>
 
   <div class="content-object">
