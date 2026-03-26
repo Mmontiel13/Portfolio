@@ -94,13 +94,6 @@ i{
   flex-direction: row !important;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: flex-start;
-  /* Enable touch scrolling with magnetic snapping */
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 .carousel-track-horizontal::-webkit-scrollbar {
@@ -109,12 +102,11 @@ i{
 
 .carousel-slide {
   min-width: 100%;
-  scroll-snap-align: center;
-  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .content-object{
   background: rgba(217, 217, 217, 0.05);
