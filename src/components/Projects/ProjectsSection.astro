@@ -45,7 +45,7 @@ const projects = await getCollection("projects");
   const track = document.getElementById("project-track");
   const dots = document.querySelectorAll("#project-dots .dot");
 
-  // Function to update active dot based on scroll position
+  // Update active dot based on scroll position
   function updateActiveDot() {
     if (!track) return;
     
@@ -72,33 +72,27 @@ const projects = await getCollection("projects");
     });
   }
 
-  // Intersection Observer for more precise detection
-  const observerOptions = {
-    root: track,
-    threshold: 0.5,
-    rootMargin: '0px'
-  };
+  // Call on initial load
+  updateActiveDot();
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = Array.from(track.querySelectorAll('.carousel-slide')).indexOf(entry.target);
-        dots.forEach((d, i) => {
-          d.classList.toggle('active', i === index);
-        });
-      }
-    });
-  }, observerOptions);
-
-  // Observe all slides
-  track?.querySelectorAll('.carousel-slide').forEach(slide => {
-    observer.observe(slide);
-  });
-
-  // Fallback scroll event listener
+  // Listen to scroll events
   track?.addEventListener('scroll', updateActiveDot, { passive: true });
 
   // Dot click handlers
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = parseInt(dot.getAttribute("data-index") || "0");
+      const slide = track?.querySelectorAll('.carousel-slide')[index];
+      if (slide) {
+        slide.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'nearest', 
+          inline: 'center' 
+        });
+      }
+    });
+  });
+
   dots.forEach((dot) => {
     dot.addEventListener("click", () => {
       const index = parseInt(dot.getAttribute("data-index") || "0");

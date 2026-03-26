@@ -14,7 +14,7 @@ const {company, role, description, date, logo} = Astro.props
 
     <p class="description">{description}</p>
     <p class="role-title">{date}</p>
-    <!-- <a href="#" class="details btn">Más Información</a> -->
+    <a href="#" class="details btn">Más Información</a>
   </div>
 </div>
 
@@ -23,19 +23,21 @@ const {company, role, description, date, logo} = Astro.props
     position: relative;
     width: 100%;
     max-width: auto;
-    padding: clamp(60px, 12vw, 70px) clamp(16px, 4vw, 25px) clamp(35px, 8vw, 50px);
+    padding: 70px 25px 50px; 
     text-align: left;
-    margin-top: clamp(12px, 3vw, 20px);
-    transition: transform 0.4s;
+    margin-top: 20px;
+    transition: transform 0.4s ;
   }
 
   .logo-wrapper {
     position: absolute;
-    top: clamp(-70px, -15vw, -90px);
-    left: 50%;
+    top: -90px;
+
+    left: 54%;
     transform: translateX(-50%);
-    width: clamp(120px, 30vw, 200px);
-    height: clamp(120px, 30vw, 200px);
+
+    width: 200px;
+    height: 200px;
   }
 
   .logo-img {
@@ -45,45 +47,39 @@ const {company, role, description, date, logo} = Astro.props
   }
 
   .company-name {
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    font-size: 1.4rem;
     font-weight: 800;
     margin: 0;
     color: #fff;
     letter-spacing: -0.5px;
-    padding-top: clamp(24px, 6vw, 40px);
+    padding-top: 40px;
   }
 
   .role-title {
-    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.5);
-    margin: clamp(4px, 1vw, 5px) 0 clamp(10px, 2vw, 15px) 0;
+    margin: 5px 0 15px 0;
   }
 
   .divider {
     width: 100%;
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
-    margin-bottom: clamp(12px, 3vw, 20px);
+    margin-bottom: 20px;
   }
 
   .description {
-    font-size: clamp(12px, 2.5vw, 14px);
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.5;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: clamp(16px, 3vw, 25px);
+    margin-bottom: 25px;
   }
 
   .details {
-    font-size: clamp(11px, 2vw, 13px);
+    font-size: 13px;
     font-weight: 600;
     color: #fff;
     text-decoration: none;
     display: inline-block;
-  }
-
-  @media (min-width: 768px) {
-    .card {
-      padding: clamp(60px, 10vw, 70px) clamp(20px, 5vw, 25px) clamp(40px, 7vw, 50px);
-    }
   }
 </style>
