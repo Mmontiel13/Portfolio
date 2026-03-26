@@ -24,13 +24,11 @@ body{
   padding: 0;
 }
 
-/* Safe-zone container for all main sections */
 main, section {
   padding: 0 clamp(1rem, 5vw, 3rem);
   box-sizing: border-box;
 }
 
-/* Standard wrapper constraints */
 .content-wrapper, section > div[class*="container"] {
   max-width: 1440px;
   margin-left: auto;

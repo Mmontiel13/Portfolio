@@ -248,11 +248,8 @@
 
   lines.forEach(line => {
     const length = line.getTotalLength();
-    // Definimos el largo de la "chispa" (30% del camino)
     const sparkLength = length * .12;
-    // El primer valor es la luz, el segundo es un hueco gigante para que no repita
     line.style.strokeDasharray = `${sparkLength} ${length * 5}`; 
-    // Empezamos con la luz "atrás" del inicio
     line.style.strokeDashoffset = length;
     line.dataset.animating = "false";
 });
@@ -263,7 +260,7 @@ function animateRandomLine() {
 
     const line = availableLines[Math.floor(Math.random() * availableLines.length)];
     const length = line.getTotalLength();
-    const sparkLength = length * 1; // Debe coincidir con el valor de arriba
+    const sparkLength = length * 1;
     const color = techColors[line.id] || '#FFFFFF';
 
     line.dataset.animating = "true";
@@ -271,12 +268,8 @@ function animateRandomLine() {
     line.style.filter = `drop-shadow(0 0 4px ${color}) drop-shadow(0 0 10px ${color})`;
 
     animate(line, {
-        /* Explicación del viaje:
-           Inicio: 'length' (la luz está justo antes de entrar al camino)
-           Fin: '-sparkLength' (la luz ha pasado todo el camino y su "cola" ya salió)
-        */
         strokeDashoffset: [length, -sparkLength],
-        duration: 2000 + (length * 2), // Un poco más lento para que se aprecie el final
+        duration: 2000 + (length * 2),
         easing: "easeInOutQuart",
         
         onComplete: () => {

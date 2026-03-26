@@ -5,17 +5,15 @@ import BgContact from "./BgContact.astro"
   <div class="section-gradient"></div>
 
   <div class="content-wrapper">
-    <h2>Contactame</h2>
+    <h2>Contáctame</h2>
 
     <div class="contact-grid">
       <div class="left">
         <h4>Medios de comunicación</h4>
         <div class="links">
-            <a href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!">Enviar e-mail <i class="fa-solid fa-paper-plane"></i></a>
-            <div class="social-icons">
-                <a href="https://github.com/Mmontiel13"><i class="fa-brands fa-github fa-lg"></i></a>
-                <a href="https://www.linkedin.com/in/devmontiels/"><i class="fa-brands fa-linkedin fa-lg"></i></a>
-            </div>
+            <a href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!">Correo<i class="fa-solid fa-paper-plane"></i></a>
+            <a href="https://github.com/Mmontiel13">Github<i class="fa-brands fa-github fa-lg"></i></a>
+            <a href="https://www.linkedin.com/in/devmontiels/">Linkedin<i class="fa-brands fa-linkedin fa-lg"></i></a>
         </div>
       </div>
 
@@ -27,8 +25,9 @@ import BgContact from "./BgContact.astro"
       </div>
 
       <div class="right">
-        <h4>Otras Actividades</h4>
-        <p>Diseño UI, contribuciones open source</p>
+        <h4>Otras actividades</h4>
+        <p>Diseño <i class="fa-brands fa-figma fa-lg"></i></p>
+        <p>Administración de servidores <i class="fa-brands fa-linux fa-lg"></i></p>
       </div>
     </div>
   </div>
@@ -87,7 +86,6 @@ import BgContact from "./BgContact.astro"
     box-sizing: border-box;
   }
 
-  /* Mobile stack */
   @media (max-width: 767px) {
     .contact-grid {
       grid-template-columns: 1fr;
@@ -147,9 +145,7 @@ import BgContact from "./BgContact.astro"
   }
 
   .links {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(10px, 2vw, 15px);
+    align-items: center;
   }
 
   .links a {
@@ -160,6 +156,7 @@ import BgContact from "./BgContact.astro"
     display: inline-flex;
     align-items: center;
     gap: clamp(6px, 1vw, 8px);
+    margin-bottom: clamp(8px, 2vw, 12px);
   }
 
   .links a:hover {
@@ -189,7 +186,6 @@ import BgContact from "./BgContact.astro"
     margin-top: clamp(8px, 2vw, 12px);
   }
 
-  /* Mobile optimization */
   @media (max-width: 767px) {
     .contact-grid {
       order-direction: column;

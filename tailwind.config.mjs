@@ -4,9 +4,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				// El fondo profundo de tu diseño
 				'dark-bg': '#0E1625', 
-				// Colores para el Glassmorphism y detalles
 				'glass-white': 'rgba(255, 255, 255, 0.05)',
 				'accent-blue': '#3b82f6',
 				'accent-purple': '#a855f7',

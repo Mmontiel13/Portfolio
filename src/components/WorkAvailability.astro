@@ -3,7 +3,7 @@ const { isAvailable } = Astro.props;
 ---
 
 <div class="work-availability" data-available={isAvailable ? "true" : "false"}>
-  <span class="status-text">{isAvailable ? "Disponible para trabajar" : "No disponible para trabajar"}</span>
+  <span class="status-text">{isAvailable ? "Disponible para trabajar" : "Sin disponibilidad"}</span>
 </div>
 
 <style>
