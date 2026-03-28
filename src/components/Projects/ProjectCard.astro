@@ -62,7 +62,16 @@ const { title, description, image1, image2, github, tech } = Astro.props;
     overflow: hidden;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 600px) {
+    .project-card {
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(30px, 8vw, 100px);
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .project-card {
       flex-direction: row;
       align-items: flex-start;
@@ -70,6 +79,7 @@ const { title, description, image1, image2, github, tech } = Astro.props;
       max-width: 100%;
     }
   }
+  
 
   .images {
     position: relative;
