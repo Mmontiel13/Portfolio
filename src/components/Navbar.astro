@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <nav class="navbar content-object">
@@ -12,7 +13,6 @@
 </nav>
 
 <style>
-
   .navbar {
     position: fixed;
     top: clamp(12px, 3vw, 20px);
@@ -64,26 +64,45 @@
       gap: clamp(8px, 2vw, 10px);
     }
   }
+
+  @media (max-width: 390px) {
+    .navbar {
+    
+    display: block;
+   } 
+  }
+
+  @media (max-width: 375px) {
+    .navbar {
+    
+    display: flex;
+    
+  }
+  }
 </style>
 
 <script>
-
   const observerOptions = {
     root: null,
-    rootMargin: '-30% 0px -60% 0px',
-    threshold: 0
+    rootMargin: "-30% 0px -60% 0px",
+    threshold: 0,
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        const id = entry.target.getAttribute("id");
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${id}`,
+          );
         });
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+  document
+    .querySelectorAll("section[id]")
+    .forEach((section) => observer.observe(section));
 </script>

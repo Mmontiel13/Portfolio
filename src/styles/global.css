@@ -40,19 +40,30 @@ main, section {
   margin-top: clamp(12px, 5vw, 20px);
 }
 
-.btn{
-  border-radius:10px;
+.btn {
+  display: inline-flex;
+  align-items: center;   
+  justify-content: center; 
+  white-space: nowrap;    
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: clamp(8px, 2vw, 10px);
+  padding: clamp(5px, 2vw, 5px) clamp(12px, 3vw, 20px);
   cursor: pointer;
+  transition: all 0.3s ease; 
+  text-decoration: none;    
+  color: inherit;
+  margin-bottom: 5px;
 }
+
 .btn:hover{
   border: 1px solid rgba(255, 255, 255, 1.5);
   color: rgba(255, 255, 255, 0.5);
 }
 
-i{
+.btn i {
   padding-right: clamp(6px, 2vw, 10px);
+  display: flex;
+  align-items: center;
 }
 
 .dots{
@@ -79,13 +90,15 @@ i{
 .carousel-viewport-projects {
   overflow: hidden;
   width: 100%;
-  padding: clamp(20px, 5vw, 40px) 0; 
+  padding: clamp(20px, 5vw, 40px) 0;
+  touch-action: pan-y;
 }
 
 .carousel-viewport-experience {
   overflow: hidden;
   width: 100%;
-  padding: clamp(12px, 3vw, 20px) 0; 
+  padding: clamp(12px, 3vw, 20px) 0;
+  touch-action: pan-y;
 }
 
 .carousel-track-horizontal {
@@ -93,10 +106,6 @@ i{
   flex-direction: row !important;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: flex-start;
-}
-
-.carousel-track-horizontal::-webkit-scrollbar {
-  display: none;
 }
 
 .carousel-slide {
