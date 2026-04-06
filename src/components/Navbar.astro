@@ -1,15 +1,18 @@
 ---
+import { useTranslations } from "../i18n/ui";
 
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <nav class="navbar content-object">
-  <a href="#inicio" class="nav-link">Principal</a>
+  <a href="#inicio" class="nav-link">{t('nav.home')}</a>
   <span class="separator"><i class="fa-solid fa-diamond"></i></span>
 
-  <a href="#proyectos" class="nav-link">Proyectos</a>
+  <a href="#proyectos" class="nav-link">{t('nav.projects')}</a>
   <span class="separator"><i class="fa-solid fa-diamond"></i></span>
 
-  <a href="#contacto" class="nav-link">Contacto</a>
+  <a href="#contacto" class="nav-link">{t('nav.contact')}</a>
 </nav>
 
 <style>

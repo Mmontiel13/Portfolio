@@ -15,13 +15,24 @@ export const ui = {
     'intro.status': 'Estudiante de la',
     'intro.location': 'Puebla, México.',
     'availability.open': 'Disponible para trabajar',
-    'availability.closed': 'Sin disponibilidad'
+    'availability.closed': 'Sin disponibilidad',
+    /*  Contact Section   */
+    'contact.title': 'Tech Stack',
+    'contact.description': 'Contáctame',
+    'contact.button': 'Enviar',
+    'contact.rightTitle': 'Otras Actividades',
+    'contact.rightDesign': 'Diseño ',
+    'contact.rightServer': 'Administración de servidores ',
+    /*  Navbar   */
+    'nav.home': 'Principal',
+    'nav.projects': 'Proyectos',
+    'nav.contact': 'Contacto',
   },
   en: {
     /*  Hero Section   */
     // HeroCard
     'hero.title': "Hi, I'm Marco Montiel!",
-    'hero.description': 'Full stack developer with a frontend mindset. I build attractive and intuitive experiences with React, Next.js, and Tailwind. Constantly learning and improving.',
+    'hero.description': 'Full stack developer with a frontend mindset. I made attractive and intuitive experiences with React, Next.js, and Tailwind. Constantly learning and improving.',
     'hero.cv': 'Resume',
     'hero.email': 'Email Me!',
     'carousel.experience': 'Work Experience',
@@ -32,6 +43,17 @@ export const ui = {
     'intro.location': 'Puebla, Mexico.',
     'availability.open': 'Available for work',
     'availability.closed': 'Currently unavailable',
+    /*  Contact Section   */
+    'contact.title': 'Tech Stack',
+    'contact.description': 'Contact Me',
+    'contact.button': 'Send',
+    'contact.rightTitle': 'Other activities',
+    'contact.rightDesign': 'Design ',
+    'contact.rightServer': 'Server administration ',
+    /*  Navbar   */
+    'nav.home': 'Home',
+    'nav.projects': 'Projects',
+    'nav.contact': 'Contact',
   },
 } as const;
 

@@ -3,13 +3,13 @@
 const { currentLang } = Astro.props;
 
 const targetLang = currentLang === 'en' ? 'es' : 'en';
-const targetUrl = currentLang === 'en' ? '/es/' : '/';
+const baseUrl = currentLang === 'en' ? '/es/' : '/';
 ---
 
-<a href={targetUrl} class="lang-toggle" aria-label="Cambiar idioma">
+<button class="lang-toggle" aria-label="Cambiar idioma" data-target-lang={targetLang} data-base-url={baseUrl}>
   <i class="fa-solid fa-globe"></i>
   <span class="lang-text">{targetLang.toUpperCase()}</span>
-</a>
+</button>
 
 <style>
   .lang-toggle {
@@ -52,3 +52,28 @@ const targetUrl = currentLang === 'en' ? '/es/' : '/';
     display: block;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const langToggle = document.querySelector('.lang-toggle');
+
+    if (langToggle) {
+      langToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const targetLang = langToggle.dataset.targetLang;
+        const baseUrl = langToggle.dataset.baseUrl;
+        const currentHash = window.location.hash;
+
+        // Construir la nueva URL manteniendo el hash actual
+        const newUrl = baseUrl + (currentHash ? currentHash : '');
+
+        // Usar el History API para cambiar la URL sin recargar
+        window.history.pushState(null, '', newUrl);
+
+        // Recargar la página para aplicar el cambio de idioma
+        window.location.reload();
+      });
+    }
+  });
+</script>

@@ -1,33 +1,35 @@
 ---
-import { getCollection } from "astro:content"
-import ExperienceCard from "./ExperienceCard.astro"
-const experience = await getCollection("experience")
+import { getCollection } from "astro:content";
+import ExperienceCard from "./ExperienceCard.astro";
+import { useTranslations } from "../../i18n/ui";
+
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+
+// Filtrar experiencia según el idioma
+const experience = await getCollection("experience", ({ id }) => {
+  return id.startsWith(`${lang}/`);
+});
 ---
 
 <div class="carousel">
-  <div class="carousel-viewport-experience ">
-    <p class="carousel-title">Experiencia Laboral</p>
+  <div class="carousel-viewport-experience">
+    <p class="carousel-title">{t('carousel.experience')}</p>
     <div class="content-object">
       <div class="track carousel-track-horizontal" id="exp-track">
         {experience.map(exp => (
           <div class="carousel-slide">
-            <ExperienceCard
-              company={exp.data.company}
-              role={exp.data.role}
-              description={exp.data.description}
-              date={exp.data.date}
-              logo={exp.data.logo}
-            />
+            <ExperienceCard {...exp.data} />
           </div>
         ))}
       </div>
     </div>
   </div>
   <div class="dots" id="exp-dots">
-        {experience.map((_, i) => (
-          <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
-        ))}
-      </div>
+    {experience.map((_, i) => (
+      <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
+    ))}
+  </div>
 </div>
 
 <script>

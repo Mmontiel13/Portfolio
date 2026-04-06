@@ -3,12 +3,12 @@ import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
 import ProjectsBgLeft from "./ProjectsBgLeft.astro";
 import ProjectsBgRight from "./ProjectsBgRight.astro";
-
-const projects = await getCollection("projects");
-
 import { useTranslations } from "../../i18n/ui";
+
 const { lang } = Astro.props;
-const t = useTranslations(lang); 
+const t = useTranslations(lang);
+
+const projects = await getCollection("projects", ({ id }) => id.startsWith(`${lang}/`)); 
 ---
 
 <section class="projects" id="proyectos">
@@ -21,7 +21,7 @@ const t = useTranslations(lang);
   <ProjectsBgLeft />
   <ProjectsBgRight />
   
-  <h2>Proyectos / Aportaciones</h2>
+  <h2>{t('carousel.projects')}</h2>
 
   <div class="content-object">
     <div class="carousel-viewport-projects">
