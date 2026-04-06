@@ -3,8 +3,12 @@ import { getCollection } from "astro:content";
 import ProjectCard from "./ProjectCard.astro";
 import ProjectsBgLeft from "./ProjectsBgLeft.astro";
 import ProjectsBgRight from "./ProjectsBgRight.astro";
+import { useTranslations } from "../../i18n/ui";
 
-const projects = await getCollection("projects");
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = await getCollection("projects", ({ id }) => id.startsWith(`${lang}/`)); 
 ---
 
 <section class="projects" id="proyectos">
@@ -17,7 +21,7 @@ const projects = await getCollection("projects");
   <ProjectsBgLeft />
   <ProjectsBgRight />
   
-  <h2>Proyectos / Aportaciones</h2>
+  <h2>{t('carousel.projects')}</h2>
 
   <div class="content-object">
     <div class="carousel-viewport-projects">
@@ -52,15 +56,45 @@ const projects = await getCollection("projects");
   const track = document.getElementById("project-track");
   const dots = document.querySelectorAll("#project-dots .dot");
 
-  dots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-      const index = parseInt(dot.getAttribute("data-index") || "0");
-      if (track) track.style.transform = `translateX(-${index * 100}%)`;
+  let currentIndex = 0;
+  let startX = 0;
+  let endX = 0;
 
-      dots.forEach((d) => d.classList.remove("active"));
-      dot.classList.add("active");
+  function updateCarousel(index) {
+    currentIndex = index;
+    if (track) track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    dots.forEach((d) => d.classList.remove("active"));
+    if(dots[currentIndex]) dots[currentIndex].classList.add("active");
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      updateCarousel(index);
     });
   });
+
+  if (track) {
+    track.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      endX = startX; 
+    }, { passive: true });
+
+    track.addEventListener("touchmove", (e) => {
+      endX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", () => {
+      const diffX = startX - endX;
+      const threshold = 50; 
+
+      if (diffX > threshold && currentIndex < dots.length - 1) {
+        updateCarousel(currentIndex + 1);
+      } else if (diffX < -threshold && currentIndex > 0) {
+        updateCarousel(currentIndex - 1);
+      }
+    });
+  }
 </script>
 
 <style>

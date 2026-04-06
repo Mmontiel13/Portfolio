@@ -1,40 +1,63 @@
+---
+import { useTranslations } from "../../i18n/ui";
+const { lang } = Astro.props;
+const t = useTranslations(lang); 
+---
 <div class="hero-card content-object">
+  <h1>{t('hero.title')}</h1>
+  <p>{t('hero.description')}</p>
 
-  <h1>!Hola, soy Marco Montiel¡</h1>
-  <p>
-  Desarrollador full stack con mentalidad frontend. Construyo experiencias atractivas e intuitivas con React, Next.js y Tailwind. En constante aprendizaje y mejora.
-  </p>
-  
   <div class="buttons">
+    <a class="btn" href="https://github.com/Mmontiel13" target="_blank">
+      <i class="fa-brands fa-github fa-lg"></i>Github
+    </a>
 
-    <a class="btn" href="https://github.com/Mmontiel13" target="_blank"> <i class="fa-brands fa-github fa-lg"></i>Github</a>
-    <a class="btn" href="https://drive.google.com/file/d/17YAs7HEulqoCbGDtJlCqX2R9VhHutldr/view?usp=sharing" target="_blank"> <i class="fa-solid fa-file-lines fa-lg"></i>CV</a>
-    <a class="btn" href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!" target="_blank">Correo! <i class="fa-solid fa-envelope"></i></a>
+    <a class="btn" href="https://drive.google.com/file/d/17YAs7HEulqoCbGDtJlCqX2R9VhHutldr/view?usp=drive_link" target="_blank">
+      <i class="fa-solid fa-file-lines fa-lg"></i>{t('hero.cv')}
+    </a>
+
+    <a
+      class="btn"
+      href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!"
+      target="_blank"
+    >
+      <i class="fa-solid fa-envelope fa-lg"></i>{t('hero.email')}
+    </a>
   </div>
-
 </div>
 
 <style>
+  .hero-card {
+    width: 100%;
+    max-width: clamp(280px, 90vw, 600px);
+    padding: clamp(10px, 4vw, 20px);
+    margin: auto;
+  }
 
-.hero-card{
-  width: 100%;
-  max-width: clamp(280px, 90vw, 600px);
-  padding: clamp(10px, 4vw, 20px);
-  margin: 10 auto;
-}
+  .hero-card h1 {
+    font-size: clamp(24px, 6vw, 36px);
+    margin-bottom: clamp(8px, 2vw, 10px);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+  }
 
-.hero-card h1{
-  font-size: clamp(24px, 6vw, 36px);
-  margin-bottom: clamp(8px, 2vw, 10px);
-  font-weight: 900;
-  text-align: center;
-  line-height: 1.2;
-}
+  .hero-card p {
+    font-size: clamp(14px, 3.5vw, 16px);
+    opacity: 0.8;
+    line-height: 1.5;
+  }
 
-.hero-card p{
-  font-size: clamp(14px, 3.5vw, 16px);
-  opacity:.8;
-  line-height: 1.5;
-}
+  @media (max-width: 640px) {
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(5px, 1vw, 5px);
+      justify-content: center;
+    }
 
+    .btn {
+      font-size: 14px;
+    }
+  }
 </style>

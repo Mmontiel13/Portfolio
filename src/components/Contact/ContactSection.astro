@@ -1,17 +1,21 @@
 ---
 import BgContact from "./BgContact.astro"
+import { useTranslations } from "../../i18n/ui";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 <section class="contact" id="contacto">
   <div class="section-gradient"></div>
 
   <div class="content-wrapper">
-    <h2>Contáctame</h2>
+    <h2>{t('contact.title')}</h2>
 
     <div class="contact-grid">
       <div class="left">
-        <h4>Medios de comunicación</h4>
+        <h4>{t('contact.description')}</h4>
         <div class="links">
-            <a href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!" target="_blank">Correo<i class="fa-solid fa-paper-plane"></i></a>
+            <a href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!" target="_blank">e-mail<i class="fa-solid fa-paper-plane"></i></a>
             <a href="https://github.com/Mmontiel13" target="_blank">Github<i class="fa-brands fa-github fa-lg"></i></a>
             <a href="https://www.linkedin.com/in/devmontiels/" target="_blank">Linkedin<i class="fa-brands fa-linkedin fa-lg"></i></a>
         </div>
@@ -25,9 +29,9 @@ import BgContact from "./BgContact.astro"
       </div>
 
       <div class="right">
-        <h4>Otras actividades</h4>
-        <p>Diseño <i class="fa-brands fa-figma fa-lg"></i></p>
-        <p>Administración de servidores <i class="fa-brands fa-linux fa-lg"></i></p>
+        <h4>{t ('contact.rightTitle')}</h4>
+        <p>{t ('contact.rightDesign')}<i class="fa-brands fa-figma fa-lg"></i></p>
+        <p>{t ('contact.rightServer')}<i class="fa-brands fa-linux fa-lg"></i></p>
       </div>
     </div>
   </div>

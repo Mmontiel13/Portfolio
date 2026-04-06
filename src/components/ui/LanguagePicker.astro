@@ -1,0 +1,79 @@
+---
+
+const { currentLang } = Astro.props;
+
+const targetLang = currentLang === 'en' ? 'es' : 'en';
+const baseUrl = currentLang === 'en' ? '/es/' : '/';
+---
+
+<button class="lang-toggle" aria-label="Cambiar idioma" data-target-lang={targetLang} data-base-url={baseUrl}>
+  <i class="fa-solid fa-globe"></i>
+  <span class="lang-text">{targetLang.toUpperCase()}</span>
+</button>
+
+<style>
+  .lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .lang-text {
+    display: none;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .lang-toggle:hover {
+    width: 90px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang-toggle:hover .lang-text {
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const langToggle = document.querySelector('.lang-toggle');
+
+    if (langToggle) {
+      langToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const targetLang = langToggle.dataset.targetLang;
+        const baseUrl = langToggle.dataset.baseUrl;
+        const currentHash = window.location.hash;
+
+        // Construir la nueva URL manteniendo el hash actual
+        const newUrl = baseUrl + (currentHash ? currentHash : '');
+
+        // Usar el History API para cambiar la URL sin recargar
+        window.history.pushState(null, '', newUrl);
+
+        // Recargar la página para aplicar el cambio de idioma
+        window.location.reload();
+      });
+    }
+  });
+</script>
