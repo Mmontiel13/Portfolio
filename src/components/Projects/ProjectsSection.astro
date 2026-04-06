@@ -5,6 +5,10 @@ import ProjectsBgLeft from "./ProjectsBgLeft.astro";
 import ProjectsBgRight from "./ProjectsBgRight.astro";
 
 const projects = await getCollection("projects");
+
+import { useTranslations } from "../../i18n/ui";
+const { lang } = Astro.props;
+const t = useTranslations(lang); 
 ---
 
 <section class="projects" id="proyectos">

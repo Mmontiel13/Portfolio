@@ -1,0 +1,20 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro"
+import Navbar from "../../components/Navbar.astro"
+import HeroSection from "../../components/Hero/HeroSection.astro"
+import ProjectsSection from "../../components/Projects/ProjectsSection.astro"
+import ContactSection from "../../components/Contact/ContactSection.astro"
+import LanguagePicker from "../../components/ui/LanguagePicker.astro"
+const lang = "es";
+---
+
+<MainLayout lang={lang}>
+    <Navbar />
+    <LanguagePicker currentLang={lang} />
+    <HeroSection lang={lang}/>
+    
+    <ProjectsSection lang={lang}/>
+    
+    <ContactSection lang={lang}/>
+
+</MainLayout>

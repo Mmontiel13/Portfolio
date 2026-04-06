@@ -1,18 +1,19 @@
+---
+import { useTranslations } from "../../i18n/ui";
+const { lang } = Astro.props;
+const t = useTranslations(lang); 
+---
 <div class="hero-card content-object">
-  <h1>!Hola, soy Marco Montiel¡</h1>
-  <p>
-    Desarrollador full stack con mentalidad frontend. Construyo experiencias
-    atractivas e intuitivas con React, Next.js y Tailwind. En constante
-    aprendizaje y mejora.
-  </p>
+  <h1>{t('hero.title')}</h1>
+  <p>{t('hero.description')}</p>
 
   <div class="buttons">
     <a class="btn" href="https://github.com/Mmontiel13" target="_blank">
       <i class="fa-brands fa-github fa-lg"></i>Github
     </a>
 
-    <a class="btn" href="LINK_A_TU_CV" target="_blank">
-      <i class="fa-solid fa-file-lines fa-lg"></i>CV
+    <a class="btn" href="https://drive.google.com/file/d/17YAs7HEulqoCbGDtJlCqX2R9VhHutldr/view?usp=drive_link" target="_blank">
+      <i class="fa-solid fa-file-lines fa-lg"></i>{t('hero.cv')}
     </a>
 
     <a
@@ -20,7 +21,7 @@
       href="mailto:marcmontiel98@gmail.com?Subject=Me interesa contactarte!"
       target="_blank"
     >
-      <i class="fa-solid fa-envelope fa-lg"></i>Correo!
+      <i class="fa-solid fa-envelope fa-lg"></i>{t('hero.email')}
     </a>
   </div>
 </div>

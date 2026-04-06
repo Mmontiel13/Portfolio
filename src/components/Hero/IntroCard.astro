@@ -1,5 +1,10 @@
 ---
 import WorkAvailability from "../WorkAvailability.astro";
+
+import { useTranslations } from "../../i18n/ui";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <div class="intro-card content-object">
@@ -9,14 +14,14 @@ import WorkAvailability from "../WorkAvailability.astro";
     <img src="/avatar.jpg" alt="avatar">
 
     <div>
-      <h4>Ingeniería en Tecnologías de la Información</h4>
+      <h4>{t('intro.degree')}</h4>
       
     </div>
 
   </div>
-  <WorkAvailability isAvailable={true} />
+  <WorkAvailability isAvailable={true} lang={lang}/>
   <p>
-    Estudiante de la <span>BUAP,</span><b> Puebla, México.</b> 
+    {t('intro.status')} <span>BUAP,</span><b> {t('intro.location')}</b> 
   </p>
 
   

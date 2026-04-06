@@ -1,9 +1,14 @@
 ---
-const { isAvailable } = Astro.props;
+import { useTranslations } from "../i18n/ui";
+
+const { isAvailable, lang = "es" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <div class="work-availability" data-available={isAvailable ? "true" : "false"}>
-  <span class="status-text">{isAvailable ? "Disponible para trabajar" : "Sin disponibilidad"}</span>
+  <span class="status-text">
+    {isAvailable ? t('availability.open') : t('availability.closed')}
+  </span>
 </div>
 
 <style>

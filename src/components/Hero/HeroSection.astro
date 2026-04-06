@@ -3,6 +3,10 @@ import HeroCard from "./HeroCard.astro"
 import ExperienceCarousel from "../Experience/ExperienceCarousel.astro"
 import IntroCard from "./IntroCard.astro"
 import HeroBg from "./HeroBg.astro"
+import { useTranslations } from "../../i18n/ui";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="hero" id="inicio">
@@ -10,7 +14,7 @@ import HeroBg from "./HeroBg.astro"
   <div class="hero-container">
 
     <div class="hero-main">
-      <HeroCard />
+      <HeroCard lang={lang}/>
     </div>
 
     <div class="hero-experience">
@@ -18,7 +22,7 @@ import HeroBg from "./HeroBg.astro"
     </div>
 
     <div class="hero-intro">
-      <IntroCard />
+      <IntroCard lang={lang}/>
     </div>
 
   </div>
