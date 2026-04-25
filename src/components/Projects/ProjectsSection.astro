@@ -32,8 +32,7 @@ const projects = await getCollection("projects", ({ id }) => id.startsWith(`${la
               <ProjectCard
                 title={project.data.title}
                 description={project.data.description}
-                image1={project.data.image1}
-                image2={project.data.image2}
+                images={project.data.images}
                 github={project.data.github}
                 tech={project.data.tech}
               />

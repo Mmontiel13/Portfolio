@@ -1,46 +1,59 @@
 ---
-const { title, description, image1, image2, github, tech } = Astro.props;
+const { title, description, images, github, tech } = Astro.props;
 ---
 
 <div class="project-card-wrapper">
   <div class="project-card">
-  <div class="images">
-
-    <img class="img-back" src={image1} />
-
-    {image2 && <img class="img-front" src={image2} />}
-
-  </div>
-
-  <div class="project-info">
-    <h1>{title}</h1>
-
-    <p>{description}</p>
-
-    <div class="tech-container">
-      {tech && tech.map((item) => (
-        <span class="tech-tag">{item}</span>
-      ))}
+    <div class="image-stack" data-images={JSON.stringify(images)}>
+      {
+        images.map((img, index) => (
+          <img
+            src={img}
+            class={`stack-img ${index === 0 ? "active" : ""}`}
+            style={`--index: ${index};`}
+            alt={`${title} screenshot ${index}`}
+            loading="lazy"
+          />
+        ))
+      }
+      <div class="stack-hint">
+        <i class="fa-solid fa-hand-pointer"></i>
+      </div>
     </div>
 
-    <div class="actions">
-      {github ? (
-        <a class="btn github-link" href={github} target="_blank" rel="noopener noreferrer">
-          <i class="fa-brands fa-github fa-lg"></i> Github
-        </a>
-      ) : (
-        <span class="private-badge">
-          <i class="fa-solid fa-lock"></i> Github
-        </span>
-      )}
+    <div class="project-info">
+      <h1>{title}</h1>
+
+      <p>{description}</p>
+
+      <div class="tech-container">
+        {tech && tech.map((item) => <span class="tech-tag">{item}</span>)}
+      </div>
+
+      <div class="actions">
+        {
+          github ? (
+            <a
+              class="btn github-link"
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-brands fa-github fa-lg" /> Github
+            </a>
+          ) : (
+            <span class="private-badge">
+              <i class="fa-solid fa-lock" /> Github
+            </span>
+          )
+        }
+      </div>
     </div>
-  </div>
   </div>
 </div>
 
 <style>
   .project-card-wrapper {
-    
     padding: clamp(20px, 5vw, 40px);
     width: 100%;
     box-sizing: border-box;
@@ -59,7 +72,7 @@ const { title, description, image1, image2, github, tech } = Astro.props;
     max-width: 100%;
     box-sizing: border-box;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   @media (min-width: 600px) {
@@ -71,37 +84,13 @@ const { title, description, image1, image2, github, tech } = Astro.props;
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1200px) {
     .project-card {
       flex-direction: row;
       align-items: flex-start;
       gap: clamp(30px, 8vw, 100px);
       max-width: 100%;
     }
-  }
-  
-
-  .images {
-    position: relative;
-    width: 90%;
-    max-width: clamp(250px, 80vw, 420px);
-    flex-shrink: 0;
-    margin-top: clamp(5px, 3vw, 10px);
-  }
-
-  .img-back {
-    width: clamp(150px, 50vw, 100%);
-    border-radius: clamp(12px, 3vw, 18px);
-    box-shadow: 0 clamp(6px, 2vw, 10px) clamp(20px, 5vw, 30px) rgba(0,0,0,.8);
-  }
-
-  .img-front {
-    position: absolute;
-    bottom: clamp(-20px, -5vw, -40px);
-    right: clamp(-10px, -5vw, -40px);
-    width: clamp(150px, 50vw, 100%);
-    border-radius: clamp(12px, 3vw, 18px);
-    box-shadow: 0 clamp(6px, 2vw, 10px) clamp(20px, 5vw, 30px) rgba(0,0,0,.8);
   }
 
   .project-info {
@@ -115,10 +104,6 @@ const { title, description, image1, image2, github, tech } = Astro.props;
   @media (min-width: 768px) {
     .project-info {
       max-width: clamp(300px, 60vw, 450px);
-    }
-    .img-front{
-      bottom: clamp(-35px, -5vw, -40px);
-      right: clamp(-60px, -5vw, -40px);
     }
   }
 
@@ -173,4 +158,150 @@ const { title, description, image1, image2, github, tech } = Astro.props;
   .private-badge i {
     font-size: clamp(10px, 2vw, 12px);
   }
+
+  /*Imagenes*/
+  .image-stack {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 10;
+    cursor: pointer;
+    perspective: 1200px;
+    margin: 20px;
+  }
+
+  @media (min-width: 640px) {
+        .image-stack {
+            max-width: 620px;
+        }
+    }
+
+  .stack-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    transform: translateX(calc(var(--index) * -5px))
+      translateY(calc(var(--index) * -20px))
+      translateZ(calc(var(--index) * -40px)) rotateX(calc(var(--index) * 2deg));
+
+    opacity: calc(1 - (var(--index) * 0.25));
+    z-index: calc(10 - var(--index));
+    filter: blur(calc(var(--index) * 1px));
+  }
+  .stack-img.active {
+    transform: translateZ(50px) scale(1);
+    opacity: 1;
+    z-index: 20;
+    transform: translateZ(0) scale(1);
+    filter: none;
+  }
+
+  .stack-img.exit {
+    transform: translateX(-60%) rotate(-10deg);
+    opacity: 0.2;
+  }
+  .image-stack:hover .stack-img.active {
+    transform: translateZ(20px) scale(1.02);
+  }
+
+  .stack-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 999px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .image-stack.is-visible:not(.clicked) .stack-hint {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .image-stack.clicked .stack-hint {
+    opacity: 0 !important;
+    visibility: hidden;
+  }
 </style>
+<script>
+  function setupStacks() {
+    const stacks = document.querySelectorAll(".image-stack");
+    
+    // Función para verificar si el usuario ya sabe barajar
+    const userKnowsShuffle = () => sessionStorage.getItem('user_knows_shuffle') === 'true';
+
+    stacks.forEach((stack) => {
+      const images = stack.querySelectorAll(".stack-img");
+      let currentIndex = 0;
+
+      // --- Observador para mostrar el hint solo si es necesario ---
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Solo mostramos el hint si entra en pantalla Y el usuario aún no sabe barajar
+          if (entry.isIntersecting && !userKnowsShuffle()) {
+            stack.classList.add('is-visible');
+
+            setTimeout(() => {
+              stack.classList.remove('is-visible');
+            }, 3000);
+
+            observer.unobserve(stack);
+          }
+        });
+      }, { threshold: 0.6 });
+
+      observer.observe(stack);
+
+      // --- Lógica del Click ---
+      const rotateImages = () => {
+        // Al hacer click, guardamos globalmente que el usuario ya sabe
+        sessionStorage.setItem('user_knows_shuffle', 'true');
+        
+        // Añadimos clase 'clicked' a todos los stacks actuales en la página
+        document.querySelectorAll('.image-stack').forEach(s => s.classList.add('clicked'));
+
+        const currentImg = images[currentIndex];
+        currentImg.classList.add("exit");
+        currentImg.classList.remove("active");
+
+        setTimeout(() => {
+          currentImg.classList.remove("exit");
+          currentIndex = (currentIndex + 1) % images.length;
+
+          images.forEach((img, i) => {
+            const newIndex = (i - currentIndex + images.length) % images.length;
+            (img as HTMLElement).style.setProperty("--index", newIndex.toString());
+
+            if (newIndex === 0) {
+              img.classList.add("active");
+            } else {
+              img.classList.remove("active");
+            }
+          });
+        }, 400);
+      };
+
+      stack.addEventListener("click", rotateImages);
+    });
+  }
+
+  setupStacks();
+  document.addEventListener("astro:after-swap", setupStacks);
+</script>
