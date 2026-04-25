@@ -28,9 +28,11 @@ const t = useTranslations(lang);
 
 <style>
   .hero-card {
+    
     width: 100%;
     max-width: clamp(280px, 90vw, 600px);
     padding: clamp(10px, 4vw, 20px);
+    
     margin: auto;
   }
 
@@ -47,6 +49,14 @@ const t = useTranslations(lang);
     opacity: 0.8;
     line-height: 1.5;
   }
+
+  @media (min-width: 1600px) {
+    .hero-card {
+      left: clamp(20px, 2%, 550px);
+      position: absolute;
+    }
+  }
+
 
   @media (max-width: 640px) {
     .buttons {

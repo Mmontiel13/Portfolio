@@ -1,8 +1,9 @@
 ---
-title: "Blog Institucional"
-description: "Blog institucional diseñado para fortalecer la presencia digital del despacho jurídico, permitiendo publicar artículos informativos, noticias legales y contenido profesional de manera organizada y accesible."
-image1: "/projects/CCABLOG2.png"
-image2: "/projects/CCABLOG.png"
+title: "Sistema de Tickets"
+description: "Aplicación web desarrollada para el manejo, monitorización y resolución de incidencias y problemas en los equipos del corporativo."
+image1: "/projects/TicketS.png"
+image2: "/projects/TicketSys.png"
+github: "https://github.com/Mmontiel13/TicketSystem-App"
 tech: ["Nextjs","React", "JavaScript", "TailwindCSS", "Php", "Firebase"]
 ---
 

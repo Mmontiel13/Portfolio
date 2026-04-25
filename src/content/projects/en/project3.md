@@ -1,7 +1,8 @@
 ---
-title: "Institutional Blog"
-description: "Institutional blog designed to strengthen the digital presence of the law firm, allowing the publication of informative articles, legal news and professional content in an organized and affordable."
-image1: "/projects/CCABLOG2.png"
-image2: "/projects/CCABLOG.png"
-tech: ["Nextjs","React", "JavaScript", "TailwindCSS", "Php", "Firebase"]
+title: "Tickets System"
+description: "Web application developed for managing, monitoring, and resolving problems in the hardware of the corporation."
+image1: "/projects/TicketS.png"
+image2: "/projects/TicketSys.png"
+github: "https://github.com/Mmontiel13/TicketSystem-App"
+tech: ["Nextjs","React", "JavaScript", "Supabase", "PostgreSQL"]
 ---
