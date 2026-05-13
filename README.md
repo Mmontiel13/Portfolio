@@ -1,10 +1,10 @@
-# 🚀 Mi Portafolio Personal
+# Mi Portafolio Personal
 
 ¡Hola! Soy **Marco Montiel**, desarrollador de Software. Me apasiona construir experiencias digitales atractivas, intuitivas y eficientes. Actualmente, soy estudiante de Ingeniería en Tecnologías de la Información en la **BUAP**.
 
 ---
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 He trabajado con una variedad de tecnologías modernas para crear aplicaciones robustas y escalables:
 

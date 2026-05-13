@@ -29,6 +29,10 @@ export const ui = {
     'nav.contact': 'Contacto',
     /*  Projects  */
     'project.page': 'Visitar',
+    // Project status
+    'project.status.1': 'En Producción',
+    'project.status.2': 'En Desarrollo',
+    'project.status.3': 'En Mantenimiento',
   },
   en: {
     /*  Hero Section   */
@@ -58,6 +62,10 @@ export const ui = {
     'nav.contact': 'Contact',
     /*  Projects  */
     'project.page': 'View',
+    // Project status
+    'project.status.1': 'In Production',
+    'project.status.2': 'In Development',
+    'project.status.3': 'In Maintenance',
   },
 } as const;
 

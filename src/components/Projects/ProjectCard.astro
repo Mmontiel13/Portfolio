@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from "../../i18n/ui";
 import { techStack } from "../../content/techStack";
+import WorkAvailability from "../WorkAvailability.astro";
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
@@ -29,7 +30,7 @@ const { title, status, description, images, github, tech, page } = Astro.props;
 
     <div class="project-info">
       <h1>{title}</h1>
-      
+      <WorkAvailability status={status} lang={lang} />
       <p>{description}</p>
 
       <div class="tech-container">
@@ -37,10 +38,15 @@ const { title, status, description, images, github, tech, page } = Astro.props;
           tech &&
             tech.map((item) => {
               const stack = techStack[item];
-
               return (
                 <span class="tech-tag">
-                  {stack?.icon && <i class={stack.icon} />}
+                  {/* SVG inline para logos sin icono en Devicon/FA (ej: n8n) */}
+                  {stack?.svg
+                    ? <Fragment set:html={stack.svg} />
+                    : stack?.icon
+                      ? <i class={stack.icon} />
+                      : null
+                  }
                   {item}
                 </span>
               );
@@ -135,7 +141,7 @@ const { title, status, description, images, github, tech, page } = Astro.props;
     max-width: 100%;
     text-align: left;
     padding-bottom: 0;
-    padding-top: 20px;
+    padding-top: 0;
   }
 
   h1 {
