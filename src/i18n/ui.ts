@@ -27,6 +27,8 @@ export const ui = {
     'nav.home': 'Principal',
     'nav.projects': 'Proyectos',
     'nav.contact': 'Contacto',
+    /*  Projects  */
+    'project.page': 'Visitar',
   },
   en: {
     /*  Hero Section   */
@@ -54,6 +56,8 @@ export const ui = {
     'nav.home': 'Home',
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
+    /*  Projects  */
+    'project.page': 'View',
   },
 } as const;
 

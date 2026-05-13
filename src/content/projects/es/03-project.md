@@ -4,7 +4,6 @@ description: "Aplicación web desarrollada para el manejo, monitorización y res
 images: 
   - "/projects/TicketLogin.png"
   - "/projects/TicketSys.png"
-  - "/projects/TicketS.png"
   - "/projects/TicketsHelp.png"
 github: "https://github.com/Mmontiel13/TicketSystem-App"
 tech: ["Nextjs","React", "JavaScript", "TailwindCSS", "Php", "Firebase"]

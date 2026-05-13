@@ -29,11 +29,14 @@ const projects = await getCollection("projects", ({ id }) => id.startsWith(`${la
         {
           projects.map((project) => (
             <div class="carousel-slide">
-              <ProjectCard
+              <ProjectCard 
+                lang={lang}
                 title={project.data.title}
+                status={project.data.status}
                 description={project.data.description}
                 images={project.data.images}
                 github={project.data.github}
+                page={project.data.page}
                 tech={project.data.tech}
               />
             </div>
@@ -104,6 +107,7 @@ const projects = await getCollection("projects", ({ id }) => id.startsWith(`${la
     margin: clamp(80px, 15vw, 150px) auto 0;
     padding: 0 clamp(1rem, 5vw, 3rem);
     box-sizing: border-box;
+    
   }
 
   .projects h2 {

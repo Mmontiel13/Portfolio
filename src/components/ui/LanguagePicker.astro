@@ -2,8 +2,8 @@
 
 const { currentLang } = Astro.props;
 
-const targetLang = currentLang === 'en' ? 'es' : 'en';
-const baseUrl = currentLang === 'en' ? '/es/' : '/';
+const targetLang = currentLang === 'es' ? 'en' : 'es';
+const baseUrl = currentLang === 'es' ? '/en/' : '/';
 ---
 
 <button class="lang-toggle" aria-label="Cambiar idioma" data-target-lang={targetLang} data-base-url={baseUrl}>

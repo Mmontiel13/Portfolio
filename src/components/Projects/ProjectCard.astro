@@ -1,5 +1,11 @@
 ---
-const { title, description, images, github, tech } = Astro.props;
+import { useTranslations } from "../../i18n/ui";
+import { techStack } from "../../content/techStack";
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const { title, status, description, images, github, tech, page } = Astro.props;
 ---
 
 <div class="project-card-wrapper">
@@ -23,11 +29,23 @@ const { title, description, images, github, tech } = Astro.props;
 
     <div class="project-info">
       <h1>{title}</h1>
-
+      
       <p>{description}</p>
 
       <div class="tech-container">
-        {tech && tech.map((item) => <span class="tech-tag">{item}</span>)}
+        {
+          tech &&
+            tech.map((item) => {
+              const stack = techStack[item];
+
+              return (
+                <span class="tech-tag">
+                  {stack?.icon && <i class={stack.icon} />}
+                  {item}
+                </span>
+              );
+            })
+        }
       </div>
 
       <div class="actions">
@@ -42,8 +60,26 @@ const { title, description, images, github, tech } = Astro.props;
               <i class="fa-brands fa-github fa-lg" /> Github
             </a>
           ) : (
-            <span class="private-badge">
-              <i class="fa-solid fa-lock" /> Github
+            <span class="btn btn-disabled">
+              <i class="fa-solid fa-lock fa-sm" /> Github
+            </span>
+          )
+        }
+
+        {
+          page ? (
+            <a
+              class="btn"
+              href={page}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-solid fa-location-arrow fa-lg" />
+              {t("project.page")}
+            </a>
+          ) : (
+            <span class="btn btn-disabled">
+              <i class="fa-solid fa-lock fa-sm" /> Web
             </span>
           )
         }
@@ -54,7 +90,8 @@ const { title, description, images, github, tech } = Astro.props;
 
 <style>
   .project-card-wrapper {
-    padding: clamp(20px, 5vw, 40px);
+    padding: clamp(20px, 5vw, 30px);
+    padding-bottom: 0;
     width: 100%;
     box-sizing: border-box;
     scroll-snap-align: center;
@@ -79,7 +116,7 @@ const { title, description, images, github, tech } = Astro.props;
     .project-card {
       flex-direction: column;
       align-items: center;
-      gap: clamp(30px, 8vw, 100px);
+      gap: clamp(30px, 8vw, 20px);
       max-width: 100%;
     }
   }
@@ -99,12 +136,6 @@ const { title, description, images, github, tech } = Astro.props;
     text-align: left;
     padding-bottom: 0;
     padding-top: 20px;
-  }
-
-  @media (min-width: 768px) {
-    .project-info {
-      max-width: clamp(300px, 60vw, 450px);
-    }
   }
 
   h1 {
@@ -150,6 +181,23 @@ const { title, description, images, github, tech } = Astro.props;
     padding-left: 10px;
   }
 
+  .btn-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .btn-disabled:hover {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+    transform: none;
+  }
+
   .actions {
     margin-top: clamp(8px, 2vw, 10px);
     margin-bottom: clamp(12px, 3vw, 20px);
@@ -157,6 +205,16 @@ const { title, description, images, github, tech } = Astro.props;
 
   .private-badge i {
     font-size: clamp(10px, 2vw, 12px);
+  }
+
+  .tech-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tech-tag i {
+    font-size: 15px;
   }
 
   /*Imagenes*/
@@ -171,10 +229,10 @@ const { title, description, images, github, tech } = Astro.props;
   }
 
   @media (min-width: 640px) {
-        .image-stack {
-            max-width: 620px;
-        }
+    .image-stack {
+      max-width: 620px;
     }
+  }
 
   .stack-img {
     position: absolute;
@@ -225,8 +283,10 @@ const { title, description, images, github, tech } = Astro.props;
     z-index: 30;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+
     pointer-events: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
@@ -243,39 +303,36 @@ const { title, description, images, github, tech } = Astro.props;
 <script>
   function setupStacks() {
     const stacks = document.querySelectorAll(".image-stack");
-    
-    // Función para verificar si el usuario ya sabe barajar
-    const userKnowsShuffle = () => sessionStorage.getItem('user_knows_shuffle') === 'true';
+    const userKnowsShuffle = () =>
+      sessionStorage.getItem("user_knows_shuffle") === "true";
 
     stacks.forEach((stack) => {
       const images = stack.querySelectorAll(".stack-img");
       let currentIndex = 0;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !userKnowsShuffle()) {
+              stack.classList.add("is-visible");
 
-      // --- Observador para mostrar el hint solo si es necesario ---
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          // Solo mostramos el hint si entra en pantalla Y el usuario aún no sabe barajar
-          if (entry.isIntersecting && !userKnowsShuffle()) {
-            stack.classList.add('is-visible');
+              setTimeout(() => {
+                stack.classList.remove("is-visible");
+              }, 3000);
 
-            setTimeout(() => {
-              stack.classList.remove('is-visible');
-            }, 3000);
-
-            observer.unobserve(stack);
-          }
-        });
-      }, { threshold: 0.6 });
+              observer.unobserve(stack);
+            }
+          });
+        },
+        { threshold: 0.6 },
+      );
 
       observer.observe(stack);
 
-      // --- Lógica del Click ---
       const rotateImages = () => {
-        // Al hacer click, guardamos globalmente que el usuario ya sabe
-        sessionStorage.setItem('user_knows_shuffle', 'true');
-        
-        // Añadimos clase 'clicked' a todos los stacks actuales en la página
-        document.querySelectorAll('.image-stack').forEach(s => s.classList.add('clicked'));
+        sessionStorage.setItem("user_knows_shuffle", "true");
+        document
+          .querySelectorAll(".image-stack")
+          .forEach((s) => s.classList.add("clicked"));
 
         const currentImg = images[currentIndex];
         currentImg.classList.add("exit");
@@ -287,7 +344,10 @@ const { title, description, images, github, tech } = Astro.props;
 
           images.forEach((img, i) => {
             const newIndex = (i - currentIndex + images.length) % images.length;
-            (img as HTMLElement).style.setProperty("--index", newIndex.toString());
+            (img as HTMLElement).style.setProperty(
+              "--index",
+              newIndex.toString(),
+            );
 
             if (newIndex === 0) {
               img.classList.add("active");
