@@ -230,7 +230,7 @@ const { title, status, description, images, github, tech, page } = Astro.props;
     max-width: 420px;
     aspect-ratio: 16 / 10;
     cursor: pointer;
-    perspective: 1200px;
+    perspective: 1080px;
     margin: 20px;
   }
 
@@ -248,14 +248,12 @@ const { title, status, description, images, github, tech, page } = Astro.props;
     height: auto;
     border-radius: 18px;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     transform: translateX(calc(var(--index) * -5px))
       translateY(calc(var(--index) * -20px))
       translateZ(calc(var(--index) * -40px)) rotateX(calc(var(--index) * 2deg));
 
     opacity: calc(1 - (var(--index) * 0.25));
     z-index: calc(10 - var(--index));
-    filter: blur(calc(var(--index) * 1px));
   }
   .stack-img.active {
     transform: translateZ(50px) scale(1);
@@ -278,7 +276,6 @@ const { title, status, description, images, github, tech, page } = Astro.props;
     bottom: 20px;
     right: 20px;
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
     color: white;
     padding: 8px 15px;
     border-radius: 999px;
