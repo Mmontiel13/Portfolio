@@ -19,7 +19,8 @@ const { title, status, description, images, github, tech, page } = Astro.props;
             class={`stack-img ${index === 0 ? "active" : ""}`}
             style={`--index: ${index};`}
             alt={`${title} screenshot ${index}`}
-            loading="lazy"
+            loading={index < 5 ? "eager" : "lazy"}
+            fetchpriority={index === 0 ? "high" : "auto"}
           />
         ))
       }

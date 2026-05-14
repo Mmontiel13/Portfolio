@@ -92,21 +92,23 @@ main, section {
   width: 100%;
   padding: clamp(20px, 5vw, 40px) 0;
   padding-bottom: 0;
-  touch-action: pan-y;
 }
 
 .carousel-viewport-experience {
   overflow: hidden;
   width: 100%;
   padding: clamp(12px, 3vw, 20px) 0;
-  touch-action: pan-y;
 }
 
 .carousel-track-horizontal {
   display: flex;
   flex-direction: row !important;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: flex-start;
+
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  will-change: transform;
+  transform: translate3d(0,0,0);
 }
 
 .carousel-slide {
